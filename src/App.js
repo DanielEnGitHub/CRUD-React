@@ -29,18 +29,28 @@ const App = () =>{
 
     // Completar
     const todoCompleted = (todoID) => {
-        const changedTodos = todos.map(todo => {
-            const todoEdit = {
-                ...todo,
-                completed: !todo.completed
-            }
+        // const changedTodos = todos.map(todo => {
+        //     const todoEdit = {
+        //         ...todo,
+        //         completed: !todo.completed
+        //     }
 
-            if (todo.id === todoID){
-                return todoEdit
-            }else{
-                return todo
-            }
-        });
+        //     if (todo.id === todoID){
+        //         return todoEdit
+        //     }else{
+        //         return todo
+        //     }
+        // });
+
+        // const changedTodos = todos.map( todo => {
+        //     return (
+        //         todo.id === todoID 
+        //         ? {...todo, completed: !todo.completed} 
+        //         : todo
+        //     )
+        // } );
+
+        const changedTodos = todos.map( todo => todo.id === todoID ? {...todo, completed: !todo.completed} : todo )
 
         setTodos(changedTodos);
 
