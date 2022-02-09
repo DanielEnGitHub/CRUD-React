@@ -62,7 +62,7 @@ const TodoForm = ( {todoAdd, todoEdit, todoUpdate, setTodoEdit} ) =>{
 
     return (
         <div>
-            <h1>{todoEdit ? 'Editar tarea': 'Nueva tarea'}</h1>
+            <h2 className='text-center display-4'>{todoEdit ? 'Editar tarea': 'Nueva tarea'}</h2>
             {
                 todoEdit &&
                 <button 

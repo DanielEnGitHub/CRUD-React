@@ -7,10 +7,10 @@ const TodoList = ({todos, todoDelete, todoCompleted, setTodoEdit}) =>{
 
     return (
         <div>
-            <h1>Soy TodoList</h1>
+            <h2 className='text-end display-4'>Lista de tareas</h2>
             {
                 todos.length === 0
-                ? <div className='alert alert-primary'>No hay tareas pendientes</div>
+                ? <div className='alert alert-primary text-end'>No hay tareas pendientes</div>
                 : todos.map(x => (
                     <Todo
                         todo={x}
