@@ -1,16 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const initialForm = {
     tittle: '',
     description: ''
 }
 
-const TodoForm = ( {todoAdd} ) =>{
+const TodoForm = ( {todoAdd, todoEdit, todoUpdate, setTodoEdit} ) =>{
 
     const [formValues, setFormValues] = useState(initialForm);
     const {tittle, description} = formValues;
     const [error, setError] = useState(null);
     const [successMS, setsuccessMS] = useState(null);
+
+    useEffect(() => {
+        if (todoEdit){
+            setFormValues(todoEdit);
+
+        }
+    }, [todoEdit])
+    
 
     const handleInputChange = e => {
         const changedFormValues = {
@@ -32,22 +40,39 @@ const TodoForm = ( {todoAdd} ) =>{
             setError('No puedes dejar la descripcion en blanco');
             return;
         }
-        todoAdd(formValues);
+
+        if (todoEdit){
+            todoUpdate(formValues);
+            setsuccessMS('La nueva tarea se actualizo correctamente');
+        }else{
+            todoAdd(formValues);
+            setsuccessMS('La nueva tarea se agrego correctamente');
+            setFormValues(initialForm);
+        }
 
 
-        setsuccessMS('La nueva tarea se agrego correctamente');
         setTimeout(() =>{
             setsuccessMS(null);
-        }, 2000)
+        }, 2000);
 
-        setFormValues(initialForm);
         setError(null);
         
     }
 
     return (
         <div>
-            <h1>Nueva tarea</h1>
+            <h1>{todoEdit ? 'Editar tarea': 'Nueva tarea'}</h1>
+            {
+                todoEdit &&
+                <button 
+                onClick={() => {
+                    setTodoEdit(null)
+                    setFormValues(initialForm);
+                    }
+                }
+                className='btn btn-sm btn-warning mb-2'>Cancelar</button>
+            }
+            
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'
@@ -69,7 +94,7 @@ const TodoForm = ( {todoAdd} ) =>{
                 <button
                     className='btn btn-primary btn-block mt-2'
                 >
-                    Agregar Tarea
+                    {todoEdit ? 'Actualizar': 'Agregar Tarea'}
                 </button>
             </form>
 

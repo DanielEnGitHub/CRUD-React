@@ -3,7 +3,7 @@ import Todo from './Todo';
 
 
 
-const TodoList = ({todos, todoDelete, todoCompleted}) =>{
+const TodoList = ({todos, todoDelete, todoCompleted, setTodoEdit}) =>{
 
     return (
         <div>
@@ -15,6 +15,7 @@ const TodoList = ({todos, todoDelete, todoCompleted}) =>{
                         key={x.id}
                         todoDelete={todoDelete}
                         todoCompleted={todoCompleted}
+                        setTodoEdit = {setTodoEdit}
                     />
                 ))
             }

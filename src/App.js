@@ -20,6 +20,7 @@ const initialTodos = [
 
 const App = () =>{
     const [todos, setTodos] = useState(initialTodos);
+    const [todoEdit, setTodoEdit] = useState(null);
 
     // Eliminar
     const todoDelete = (todoID) =>{
@@ -71,6 +72,18 @@ const App = () =>{
         setTodos(changedTodos);
     }
 
+    const todoUpdate = (x) =>{
+
+        const changedTodos = todos.map(todo => {
+            return (
+                todo.id === x.id
+                ? x
+                : todo
+            )
+        });
+        setTodos(changedTodos);
+    }
+
     return(
         <div className='container mt-4'>
             <div className='row'>
@@ -79,11 +92,15 @@ const App = () =>{
                         todos={todos}
                         todoDelete = {todoDelete}
                         todoCompleted = {todoCompleted}
+                        setTodoEdit = {setTodoEdit}
                     />
                 </div>
                 <div className='col-4'>
                     <TodoForm
+                        todoEdit = {todoEdit}
                         todoAdd={todoAdd}
+                        todoUpdate = {todoUpdate}
+                        setTodoEdit = {setTodoEdit}
                     />
                 </div>
             </div>
