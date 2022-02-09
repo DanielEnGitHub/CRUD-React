@@ -15,7 +15,8 @@ const TodoForm = ( {todoAdd, todoEdit, todoUpdate, setTodoEdit} ) =>{
     useEffect(() => {
         if (todoEdit){
             setFormValues(todoEdit);
-
+        }else{
+            setFormValues(initialForm);
         }
     }, [todoEdit])
     
@@ -65,11 +66,7 @@ const TodoForm = ( {todoAdd, todoEdit, todoUpdate, setTodoEdit} ) =>{
             {
                 todoEdit &&
                 <button 
-                onClick={() => {
-                    setTodoEdit(null)
-                    setFormValues(initialForm);
-                    }
-                }
+                onClick={() => setTodoEdit(null) }
                 className='btn btn-sm btn-warning mb-2'>Cancelar</button>
             }
             

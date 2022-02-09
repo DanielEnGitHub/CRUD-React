@@ -24,6 +24,11 @@ const App = () =>{
 
     // Eliminar
     const todoDelete = (todoID) =>{
+
+        if (todoEdit && todoID === todoEdit.id) {
+            setTodoEdit(null);
+        }
+
         const changedTodos = todos.filter( todo => todo.id !== todoID );
         setTodos(changedTodos);
     }

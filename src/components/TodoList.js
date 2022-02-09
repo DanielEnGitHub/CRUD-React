@@ -9,7 +9,9 @@ const TodoList = ({todos, todoDelete, todoCompleted, setTodoEdit}) =>{
         <div>
             <h1>Soy TodoList</h1>
             {
-                todos.map(x => (
+                todos.length === 0
+                ? <div className='alert alert-primary'>No hay tareas pendientes</div>
+                : todos.map(x => (
                     <Todo
                         todo={x}
                         key={x.id}
